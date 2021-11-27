@@ -1,8 +1,9 @@
 package com.kodilla.testing.shape.tdd;
 
-import com.kodilla.testing.forum.*;
+import com.kodilla.testing.shape.Circle;
+import com.kodilla.testing.shape.Shape;
+import com.kodilla.testing.shape.ShapeCollector;
 import org.junit.jupiter.api.*;
-import com.kodilla.testing.shape.*;
 
 import java.util.ArrayList;
 
@@ -36,9 +37,9 @@ class ShapeTest {
             ShapeCollector classToBeTested = new ShapeCollector(collectionOfShapesTest);
             Shape circle = new Circle("Circle 1", "Field is 50 square cm");
             //When
-            classToBeTested.addFigure(circle);
+            boolean result = classToBeTested.addFigure(circle);
             //Then
-            Assertions.assertEquals(1, classToBeTested.getNumerOfFigures());
+            Assertions.assertTrue(result && classToBeTested.getNumerOfFigures() == 1);
         }
 
         @Test
@@ -55,9 +56,9 @@ class ShapeTest {
             classToBeTested.addFigure(triangle);
             classToBeTested.addFigure(rectangle);
             //When
-            classToBeTested.removeFigure(circle1);
+            boolean result = classToBeTested.removeFigure(circle1);
             //Then
-            Assertions.assertEquals(3, classToBeTested.getNumerOfFigures());
+            Assertions.assertTrue(result && classToBeTested.getNumerOfFigures() == 3);
         }
 
         @Test

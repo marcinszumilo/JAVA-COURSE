@@ -8,12 +8,19 @@ public class ShapeCollector {
     public ShapeCollector (ArrayList<Shape> collectionOfShapes) {
         this.collectionOfShapes = collectionOfShapes;
     }
-    public void addFigure(Shape shape) {
-        collectionOfShapes.add(shape);
+    public boolean addFigure(Shape shape) {
+        boolean result = collectionOfShapes.add(shape);
+        return result;
     }
-    public void removeFigure(Shape shape) {
-        collectionOfShapes.remove(shape);
+    public boolean removeFigure(Shape shape) {
+        boolean result = false;
+        if (collectionOfShapes.size() == 0 || collectionOfShapes.contains(shape)) {
+            result = collectionOfShapes.remove(shape);
+            return result;
+        }
+        return false;
     }
+
     public Shape getFigure(int n) {
         return collectionOfShapes.get(n);
     }
