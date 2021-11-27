@@ -4,7 +4,9 @@ import com.kodilla.testing.forum.*;
 import org.junit.jupiter.api.*;
 import com.kodilla.testing.shape.*;
 
-@DisplayName("TDD: SHape Test Suite")
+import java.util.ArrayList;
+
+@DisplayName("TDD: Shape Test Suite")
 class ShapeTest {
 
     private static int testCounter = 0;
@@ -29,17 +31,74 @@ class ShapeTest {
     class TestShapes {
         @Test
         void testAddShape() {
+            //Given
+            ArrayList<Shape> collectionOfShapesTest = new ArrayList<>();
+            ShapeCollector classToBeTested = new ShapeCollector(collectionOfShapesTest);
+            Shape circle = new Circle("Circle 1", "Field is 50 square cm");
+            //When
+            classToBeTested.addFigure(circle);
+            //Then
+            Assertions.assertEquals(1, classToBeTested.getNumerOfFigures());
         }
 
         @Test
         void testRemoveShape() {
+            //Given
+            ArrayList<Shape> collectionOfShapesTest = new ArrayList<>();
+            ShapeCollector classToBeTested = new ShapeCollector(collectionOfShapesTest);
+            Shape circle = new Circle("Circle 1", "Field is 50 square cm");
+            Shape circle1 = new Circle("Circle 2", "Field is 150 square cm");
+            Shape triangle = new Circle("Big triangle", "Field is 111 square cm");
+            Shape rectangle = new Circle("Old rectyangle", "Field is 1131 square cm");
+            classToBeTested.addFigure(circle);
+            classToBeTested.addFigure(circle1);
+            classToBeTested.addFigure(triangle);
+            classToBeTested.addFigure(rectangle);
+            //When
+            classToBeTested.removeFigure(circle1);
+            //Then
+            Assertions.assertEquals(3, classToBeTested.getNumerOfFigures());
         }
 
         @Test
         void testGetFigure() {
+            //Given
+            ArrayList<Shape> collectionOfShapesTest = new ArrayList<>();
+            ShapeCollector classToBeTested = new ShapeCollector(collectionOfShapesTest);
+            Shape circle = new Circle("Circle 1", "Field is 50 square cm");
+            Shape circle1 = new Circle("Circle 2", "Field is 150 square cm");
+            Shape triangle = new Circle("Big triangle", "Field is 111 square cm");
+            Shape rectangle = new Circle("Old rectyangle", "Field is 1131 square cm");
+            classToBeTested.addFigure(circle);
+            classToBeTested.addFigure(circle1);
+            classToBeTested.addFigure(triangle);
+            classToBeTested.addFigure(rectangle);
+            //When
+            Shape returnedFigure = classToBeTested.getFigure(2);
+            //Then
+            Assertions.assertEquals(returnedFigure, triangle);
         }
         @Test
         void testShowFigure() {
+            //Given
+            ArrayList<Shape> collectionOfShapesTest = new ArrayList<>();
+            ShapeCollector classToBeTested = new ShapeCollector(collectionOfShapesTest);
+            Shape circle = new Circle("Circle 1", "Field is 50 square cm");
+            Shape circle1 = new Circle("Circle 2", "Field is 150 square cm");
+            Shape triangle = new Circle("Big triangle", "Field is 111 square cm");
+            Shape rectangle = new Circle("Old rectyangle", "Field is 1131 square cm");
+            classToBeTested.addFigure(circle);
+            collectionOfShapesTest.add(circle);
+            classToBeTested.addFigure(circle1);
+            collectionOfShapesTest.add(circle1);
+            classToBeTested.addFigure(triangle);
+            collectionOfShapesTest.add(triangle);
+            classToBeTested.addFigure(rectangle);
+            collectionOfShapesTest.add(rectangle);
+            //When
+            ArrayList<Shape> returnedListOfFigures= classToBeTested.showFigures();
+            //Then
+            Assertions.assertEquals(returnedListOfFigures, collectionOfShapesTest);
         }
     }
 }

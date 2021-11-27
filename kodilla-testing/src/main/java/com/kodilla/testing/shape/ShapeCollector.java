@@ -20,4 +20,8 @@ public class ShapeCollector {
     public ArrayList<Shape> showFigures() {
         return collectionOfShapes;
     }
+
+    public int getNumerOfFigures() {
+        return collectionOfShapes.size();
+    }
 }
