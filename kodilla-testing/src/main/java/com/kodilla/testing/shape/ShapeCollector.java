@@ -9,13 +9,15 @@ public class ShapeCollector {
         this.collectionOfShapes = collectionOfShapes;
     }
     public void addFigure(Shape shape) {
+        collectionOfShapes.add(shape);
     }
     public void removeFigure(Shape shape) {
+        collectionOfShapes.remove(shape);
     }
     public Shape getFigure(int n) {
-        return null;
+        return collectionOfShapes.get(n);
     }
-    public Shape showFigures() {
-        return null;
+    public ArrayList<Shape> showFigures() {
+        return collectionOfShapes;
     }
 }
