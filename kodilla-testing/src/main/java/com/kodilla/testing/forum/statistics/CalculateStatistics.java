@@ -14,8 +14,10 @@ public class CalculateStatistics {
         this.numberOfComments = inputData.commentsCount();
     }
 
-    public void calculateAdvStatistics(Statistics statistics) {
-
+    public void calculateAdvStatistics() {
+        averagePostsPerUser = (double)numberOfPosts / (double)numberOfUsers;
+        averageCommentsPerUser = (double)numberOfComments / (double)numberOfUsers;
+        averageCommentsPerPost = (double)numberOfComments / (double)numberOfPosts;
     }
 
     public void showStatistics() {

@@ -53,6 +53,7 @@ public class ForumStatisticsTestSuite {
         CalculateStatistics statisticsCalculator = new CalculateStatistics(forumMock);
 
         //When
+        statisticsCalculator.calculateAdvStatistics();
         int resultNumberOfUsers = statisticsCalculator.getNumberOfUsers();
         int resultNumberOfPosts = statisticsCalculator.getNumberOfPosts();
         int resultNumberOfComments = statisticsCalculator.getNumberOfComments();
@@ -64,8 +65,8 @@ public class ForumStatisticsTestSuite {
         Assertions.assertEquals(6, resultNumberOfUsers);
         Assertions.assertEquals(1243, resultNumberOfPosts);
         Assertions.assertEquals(213987, resultNumberOfComments);
-        Assertions.assertEquals(5.0, resultAveragePostPerUser);
-        Assertions.assertEquals(5.0, resultAverageCommentsPerUser);
-        Assertions.assertEquals(5.0, resultAverageCommentsPerPost);
+        Assertions.assertEquals(207.16666666666666, resultAveragePostPerUser);
+        Assertions.assertEquals(35664.5, resultAverageCommentsPerUser);
+        Assertions.assertEquals(172.15366049879324, resultAverageCommentsPerPost);
     }
 }
