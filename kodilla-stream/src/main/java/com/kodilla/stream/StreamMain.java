@@ -1,21 +1,25 @@
-package com.kodilla.stream;                                                   // [1]
+package com.kodilla.stream;
 
-import com.kodilla.stream.beautifier.PoemBeautifier;
-import com.kodilla.stream.iterate.NumbersGenerator;
+import com.kodilla.stream.forumuser.Forum;
+import com.kodilla.stream.forumuser.ForumUser;
 
-public class StreamMain {                                                     // [3]
+import java.time.LocalDate;
+import java.time.Period;
+import java.util.Map;
+import java.util.stream.Collectors;
 
-    public static void main(String[] args) {                                   // [4]
-        PoemBeautifier beautifyExecutor = new PoemBeautifier();
+public class StreamMain {
 
-        beautifyExecutor.beautify("Some text", (textToBeBeautiful) -> "ABC " + textToBeBeautiful + " ABC");
-        beautifyExecutor.beautify("Some text", (textToBeBeautiful) -> textToBeBeautiful.toUpperCase());
+    public static void main(String[] args) {
+        Forum theForum = new Forum();
+        Map<Integer , ForumUser> theResultStringOfBooks = theForum.getUserList().stream()  // [1]
+                .filter(theUser -> theUser.getSex()  == 'M')
+                .filter(theUser -> Period.between(theUser.getDateOfBirth() , LocalDate.now()).getYears() > 20)
+                .filter(theUser -> theUser.getNumberOfPosts()  > 1)
+                .collect(Collectors.toMap(ForumUser::getUniqueID , theUser -> theUser));                    // [2]
 
-        beautifyExecutor.beautify("Some text", (textToBeBeautiful) -> textToBeBeautiful + " : length is " + textToBeBeautiful.length());
-        beautifyExecutor.beautify("Some text", (textToBeBeautiful) -> textToBeBeautiful.replace("e","Q"));
-
-        System.out.println("Using Stream to generate even numbers from 1 to 20");
-        NumbersGenerator.generateEven(20);
-
-    }
+        System.out.println("# elements: " + theResultStringOfBooks.size());             // [2]
+        theResultStringOfBooks.entrySet().stream()
+                .map(entry -> entry.getKey() + ": " + entry.getValue().getUserName())                   // [3]
+                .forEach(System.out::println);      }
 }
