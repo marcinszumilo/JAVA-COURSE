@@ -1,8 +1,16 @@
-package com.kodilla.stream;
+package com.kodilla.stream;                                                   // [1]
 
-public class StreamMain {
+import com.kodilla.stream.beautifier.PoemBeautifier;
 
-    public static void main(String[] args) {
-        System.out.println("Welcome to module 7 - Stream");
+public class StreamMain {                                                     // [3]
+
+    public static void main(String[] args) {                                   // [4]
+        PoemBeautifier beautifyExecutor = new PoemBeautifier();
+
+        beautifyExecutor.beautify("Some text", (textToBeBeautiful) -> "ABC " + textToBeBeautiful + " ABC");
+        beautifyExecutor.beautify("Some text", (textToBeBeautiful) -> textToBeBeautiful.toUpperCase());
+
+        beautifyExecutor.beautify("Some text", (textToBeBeautiful) -> textToBeBeautiful + " : length is " + textToBeBeautiful.length());
+        beautifyExecutor.beautify("Some text", (textToBeBeautiful) -> textToBeBeautiful.replace("e","Q"));
     }
 }
