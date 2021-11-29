@@ -14,10 +14,12 @@ public class CalculateStatistics {
         this.numberOfComments = inputData.commentsCount();
     }
 
-    public void calculateAdvStatistics() {
+    public boolean calculateAdvStatistics() {
+        if (numberOfUsers == 0 || numberOfPosts == 0) {return false;}
         averagePostsPerUser = (double)numberOfPosts / (double)numberOfUsers;
         averageCommentsPerUser = (double)numberOfComments / (double)numberOfUsers;
         averageCommentsPerPost = (double)numberOfComments / (double)numberOfPosts;
+        return true;
     }
 
     public void showStatistics() {
